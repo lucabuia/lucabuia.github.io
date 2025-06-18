@@ -1,20 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome to My Website</title>
+    <title>Luca Buiarelli</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
-        nav a { margin-right: 15px; text-decoration: none; color: blue; }
-        nav a:hover { text-decoration: underline; }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        img {
+            max-width: 150px;
+            border-radius: 50%;
+            display: block;
+            margin: 20px auto;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .section {
+            margin: 20px 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: gray;
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
-    <nav>
-        <a href="cv.html">My CV</a>
-        <a href="blog/">Blog</a>
-        <a href="notes/">Notes</a>
-    </nav>
-    <p>Hi! I’m Luca. This website hosts my CV, research blog posts, and notes.</p>
+    <img src="assets/Headshot.jpg" alt="Picture of Me">
+    <h1>Luca Buiarelli</h1>
+    <p>Hello! I’m Luca. I am investigating novel magnetic phases of materials using group theory and DFT simulations at the University of Minnesota. This website hosts my CV, research blog posts, and notes.</p>
+    
+    <div class="section">
+        <h2>Academic Experiences</h2>
+        <p>
+            I completed my undergraduate studies in Physics at University of Pisa, Italy and then got a Master's in Physics at the University of Copenhagen, Niels Bohr Institute. 
+            I am currently pursuing my research at the University of Minnesota, working on projects involving altermagnetism and the interplay between spin-orbit coupling and structural degrees of freedom.
+        </p>
+        <p>
+            Download my <a href="assets/CV.pdf" target="_blank">CV</a> to learn more about my academic journey and projects.
+        </p>
+    </div>
+    
+    <div class="section">
+        <h2>Notes</h2>
+        <p>
+            I’ve compiled some notes in Condensed Matter Theory while I was in Copenhagen. For anyone interested, you can download them here:
+        </p>
+        <p>
+            <a href="assets/Condensed_Matter_Theory.pdf" target="_blank">Download Notes (PDF)</a>
+        </p>
+    </div>
+    
+    <footer>
+        &copy; 2025 Luca Buiarelli
+    </footer>
 </body>
 </html>
