@@ -16,7 +16,7 @@
             margin: 20px auto;
         }
         .headshot {
-            max-width: 150px; /* Restrict the headshot size */
+            max-width: 200px; /* Restrict the headshot size */
             border-radius: 50%; /* Make it circular */
         }
         h1, h2 {
@@ -52,12 +52,15 @@
         }
         .media-row {
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            justify-content: space-between; /* Spread the images across the row */
+            gap: 20px; /* Add space between the images */
+            overflow-x: auto; /* Enable horizontal scrolling if needed */
+            margin: 0 -20px; /* Expand media-row to span the entire page */
         }
         .media-row img {
-            max-width: 250px;
             height: auto;
+            width: auto;
+            max-height: 400px; /* Limit the height to prevent oversized images */
         }
         footer {
             text-align: center;
@@ -84,9 +87,9 @@
 
     <div class="section">
         <div class="media-row">
-            <img class="media" src="assets/Ball.gif" alt="Spin Density on the surface of a sphere surrounding an atom.">
-            <img class="media" src="assets/SpinDensity.png" alt="Spin density in rutile.">
-            <img class="media" src="assets/FS.png" alt="Rashba spin-split Fermi surfaces.">
+            <img src="assets/Ball.gif" alt="Spin Density on the surface of a sphere sorrounding an atom.">
+            <img src="assets/SpinDensity.png" alt="Spin density in rutile.">
+            <img src="assets/FS.png" alt="Rashba spin-split Fermi surfaces.">
         </div>
     </div>
     
