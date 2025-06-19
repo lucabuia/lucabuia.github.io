@@ -11,10 +11,13 @@
             margin: 0 auto;
             position: relative;
         }
-        img, .media {
-            max-width: 100%;
+        img {
             display: block;
             margin: 20px auto;
+        }
+        .headshot {
+            max-width: 150px; /* Restrict the headshot size */
+            border-radius: 50%; /* Make it circular */
         }
         h1, h2 {
             text-align: center;
@@ -71,7 +74,7 @@
         <a href="https://www.linkedin.com/in/luca-buiarelli/" target="_blank">LinkedIn</a>
         <a href="https://scholar.google.com/citations?user=UHrd4IsAAAAJ&hl=en" target="_blank">Google Scholar</a>
     </div>
-    <img src="assets/Headshot.jpg" alt="Picture of Me">
+    <img class="headshot" src="assets/Headshot.jpg" alt="Picture of Me">
     <h1>Luca Buiarelli</h1>
     <p>
         Hello! I’m Luca. I am investigating novel magnetic phases of materials using group theory and DFT simulations 
@@ -81,7 +84,7 @@
 
     <div class="section">
         <div class="media-row">
-            <img class="media" src="assets/Ball.gif" alt="Spin Density on the surface of a sphere sorrounding an atom.">
+            <img class="media" src="assets/Ball.gif" alt="Spin Density on the surface of a sphere surrounding an atom.">
             <img class="media" src="assets/SpinDensity.png" alt="Spin density in rutile.">
             <img class="media" src="assets/FS.png" alt="Rashba spin-split Fermi surfaces.">
         </div>
