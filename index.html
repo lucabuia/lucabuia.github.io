@@ -11,16 +11,17 @@
             margin: 0 auto;
             position: relative;
         }
-        img {
-            display: block;
-            margin: 20px auto;
+        h1 {
+            margin: 0;
+            font-size: 1.8em;
         }
-        .headshot {
-            max-width: 150px;
-            border-radius: 50%;
-        }
-        h1, h2 {
+        h2 {
             text-align: center;
+        }
+        .subtitle {
+            color: gray;
+            font-size: 1em;
+            margin-top: 5px;
         }
         a {
             color: blue;
@@ -54,7 +55,7 @@
             position: relative;
             max-width: 100%;
             height: 400px;
-            overflow: visible;
+            overflow: hidden;
             margin: 20px auto;
         }
         .carousel img {
@@ -103,8 +104,10 @@
         <a href="https://www.linkedin.com/in/luca-buiarelli/" target="_blank">LinkedIn</a>
         <a href="https://scholar.google.com/citations?user=UHrd4IsAAAAJ&hl=en" target="_blank">Google Scholar</a>
     </div>
-    <img class="headshot" src="assets/Headshot.jpg" alt="Picture of Me">
-    <h1>Luca Buiarelli</h1>
+    <div>
+        <h1>Luca Buiarelli</h1>
+        <p class="subtitle">PhD candidate</p>
+    </div>
     <p>
         Hello! I’m Luca. I am investigating novel magnetic phases of materials using group theory and DFT simulations 
         in <a href="https://birol.cems.umn.edu/" target="_blank">Turan Birol's group</a> at the University of Minnesota. 
@@ -114,7 +117,7 @@
     <div class="section carousel">
         <img src="assets/Ball.gif" alt="Spin Density on the surface of a sphere" class="active">
         <img src="assets/SpinDensity.png" alt="Spin density in rutile">
-        <img src="assets/Rashba.png" alt="Rashba spin-split Fermi surfaces">
+        <img src="assets/FS.png" alt="Rashba spin-split Fermi surfaces">
         <div class="dots">
             <span class="active" onclick="showSlide(0)"></span>
             <span onclick="showSlide(1)"></span>
@@ -137,7 +140,10 @@
     <div class="section">
         <h2>Notes</h2>
         <p>
-            I’ve compiled some notes in Condensed Matter Theory while I was in Copenhagen. For anyone interested, you can download them here: <a href="assets/Condensed_Matter_Theory.pdf" target="_blank">CMT notes (PDF)</a>.
+            I’ve compiled some notes in Condensed Matter Theory while I was in Copenhagen. For anyone interested, you can download them here:
+        </p>
+        <p>
+            <a href="assets/Condensed_Matter_Theory.pdf" target="_blank">CMT notes (PDF)</a>
         </p>
         <p>
             Moreover, you can find here my <a href="https://nbi.ku.dk/english/theses/masters-theses/luca-buiarelli/" target="_blank"> Master's thesis</a> on kagome-layered materials and here some <a href="assets/BSc_Thesis.pdf" target="_blank">slides</a> on my Bachelor's thesis on the Monte Carlo method applied to the Ising model.
