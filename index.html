@@ -11,9 +11,8 @@
             margin: 0 auto;
             position: relative;
         }
-        img {
-            max-width: 150px;
-            border-radius: 50%;
+        img, .media {
+            max-width: 100%;
             display: block;
             margin: 20px auto;
         }
@@ -48,6 +47,15 @@
         .social-links a:hover {
             text-decoration: underline;
         }
+        .media-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .media-row img {
+            max-width: 250px;
+            height: auto;
+        }
         footer {
             text-align: center;
             margin-top: 40px;
@@ -56,6 +64,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="social-links">
         <a href="https://github.com/lucabuia" target="_blank">GitHub</a>
@@ -71,9 +80,11 @@
     </p>
 
     <div class="section">
-        <img class="media" src="assets/Ball.gif" alt="Spin Density on the surface of a sphere sorrounding an atom.">
-        <img class="media" src="assets/SpinDensity.png" alt="Spin density in rutile.">
-        <img class="media" src="assets/FS.png" alt="Rashba spin-split Fermi surfaces.">
+        <div class="media-row">
+            <img class="media" src="assets/Ball.gif" alt="Spin Density on the surface of a sphere sorrounding an atom.">
+            <img class="media" src="assets/SpinDensity.png" alt="Spin density in rutile.">
+            <img class="media" src="assets/FS.png" alt="Rashba spin-split Fermi surfaces.">
+        </div>
     </div>
     
     <div class="section">
