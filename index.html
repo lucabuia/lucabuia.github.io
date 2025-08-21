@@ -9,7 +9,7 @@
   <meta property="og:description" content="PhD candidate investigating novel magnetic phases of materials using group theory and DFT simulations." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/SpinDensity.png" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2244%22 fill=%22%230c0c0c%22/><text x=%2250%25%22 y=%2257%25%22 font-size=%2260%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial%2C%20sans-serif%22>L</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2244%22 fill=%22%230c0c0c%22/><text x=%2250%25%22 y=%2257%25%22 font-size=%2240%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial%2C%20sans-serif%22>LB</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -23,19 +23,6 @@
       --shadow: 0 10px 30px rgba(0,0,0,0.35);
       --radius: 18px;
       --gap: 18px;
-    }
-    :root.light {
-      --bg: #f7f8fb;
-      --panel: #ffffff;
-      --text: #12131a;
-      --muted: #4e5566;
-      --brand: #2357ff;
-      --accent: #5b3dff;
-      --ring: rgba(35,87,255,0.25);
-      --shadow: 0 10px 30px rgba(0,0,0,0.08);
-    }
-    @media (prefers-color-scheme: light) {
-      :root:not(.dark) { color-scheme: light; }
     }
     * { box-sizing: border-box; }
     html, body { height: 100%; }
@@ -70,6 +57,8 @@
       box-shadow: var(--shadow);
       display: grid; place-items: center;
       color: white; font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
     }
     .title h1 { margin: 0; font-size: 1.5rem; letter-spacing: 0.3px; }
     .title .subtitle { margin: 2px 0 0; color: var(--muted); font-size: 0.95rem; }
@@ -92,10 +81,7 @@
       box-shadow: var(--shadow);
     }
     .icon-link:hover, .icon-link:focus-visible { outline: none; border-color: var(--ring); box-shadow: 0 0 0 6px var(--ring); }
-    .theme-toggle {
-      border: 1px solid rgba(255,255,255,0.12); background: var(--panel); color: var(--text);
-      padding: 8px 12px; border-radius: 999px; cursor: pointer; font-weight: 600;
-    }
+
     .hero {
       margin-top: 14px;
       display: grid;
@@ -105,7 +91,7 @@
     }
     @media (max-width: 860px) {
       .hero { grid-template-columns: 1fr; }
-      nav ul { display: none; } /* Keep it minimal on small screens */
+      nav ul { display: none; }
     }
     .panel {
       background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
@@ -116,17 +102,7 @@
     }
     .hero h2 { margin: 0 0 8px; font-size: 2rem; }
     .hero p { margin: 0 0 16px; color: var(--muted); }
-    .cta {
-      display: inline-flex; gap: 10px; align-items: center;
-      padding: 10px 14px; border-radius: 12px; text-decoration: none; font-weight: 700;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: linear-gradient(135deg, var(--brand), var(--accent));
-      color: white;
-    }
-    .cta.secondary {
-      background: transparent; color: var(--text);
-      border: 1px solid rgba(255,255,255,0.18);
-    }
+
     /* Carousel */
     .carousel { position: relative; height: 420px; overflow: hidden; border-radius: var(--radius); }
     .carousel img {
@@ -154,13 +130,11 @@
     .arrow:hover, .dot:focus-visible, .arrow:focus-visible { outline: none; box-shadow: 0 0 0 6px var(--ring); }
     .arrow.prev { left: 10px; }
     .arrow.next { right: 10px; }
+
     /* Sections */
     section { margin: 42px 0; }
     h3.section-title { margin: 0 0 16px; font-size: 1.3rem; letter-spacing: 0.2px; }
-    .grid {
-      display: grid; gap: var(--gap);
-      grid-template-columns: repeat(12, 1fr);
-    }
+    .grid { display: grid; gap: var(--gap); grid-template-columns: repeat(12, 1fr); }
     .col-7 { grid-column: span 7; }
     .col-5 { grid-column: span 5; }
     @media (max-width: 860px) {
@@ -174,7 +148,7 @@
     .links a { color: var(--brand); text-decoration: none; font-weight: 700; }
     .links a:hover { text-decoration: underline; }
     footer { margin: 52px 0 18px; text-align: center; color: var(--muted); font-size: 0.95rem; }
-    /* Smooth fade-in */
+
     .fade-in { animation: fade 600ms ease both; }
     @keyframes fade { from { opacity: 0; transform: translateY(6px);} to { opacity: 1; transform: translateY(0);} }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
@@ -184,7 +158,7 @@
   <div class="wrap">
     <header>
       <div class="brand">
-        <div class="logo" aria-hidden="true">L</div>
+        <div class="logo" aria-hidden="true">LB</div>
         <div class="title">
           <h1>Luca Buiarelli</h1>
           <p class="subtitle">PhD Candidate · Materials Science</p>
@@ -206,10 +180,13 @@
           <a class="icon-link" href="https://www.linkedin.com/in/luca-buiarelli/" target="_blank" rel="noopener" aria-label="LinkedIn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.85-2.05 3.81-2.05 4.08 0 4.83 2.68 4.83 6.16V23h-4v-6.66c0-1.59-.03-3.64-2.22-3.64-2.22 0-2.56 1.73-2.56 3.52V23h-4V8z"/></svg>
           </a>
+          <!-- Google Scholar with mortarboard icon -->
           <a class="icon-link" href="https://scholar.google.com/citations?user=UHrd4IsAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 1 12l4 .01V21h6v-6h2v6h6v-8.99l4-.01L12 3z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 3 1.5 8.25 12 13.5 20 9.6v5.15c0 .28-.16.54-.41.66L12 19.5l-7.59-4.09a.75.75 0 0 1-.41-.66V9.6L12 14.85 22.5 9.6 12 3Z"/>
+              <path d="M7.5 14.75v2.25c0 1.1 2.01 2 4.5 2s4.5-.9 4.5-2v-2.25l-4.5 2.43-4.5-2.43Z"/>
+            </svg>
           </a>
-          <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle theme">Toggle theme</button>
         </div>
       </div>
     </header>
@@ -218,18 +195,15 @@
       <!-- HERO -->
       <section id="about" class="hero fade-in">
         <div class="panel">
-          <h2>Hello! I’m Luca 👋</h2>
+          <h2>Hello! I’m Luca</h2>
           <p>
             I investigate novel magnetic phases of materials using group theory and DFT simulations
             in <a href="https://birol.cems.umn.edu/" target="_blank" rel="noopener" class="links">Turan Birol’s group</a> at the University of Minnesota.
           </p>
-          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-            <a class="cta" href="assets/CV.pdf" target="_blank" rel="noopener">Download CV</a>
-            <a class="cta secondary" href="#notes">Read Notes</a>
-          </div>
         </div>
+
         <div class="panel">
-          <div class="carousel" aria-roledescription="carousel" aria-label="Gallery">
+          <div class="carousel" aria-roledescription="carousel" aria-label="Gallery" tabindex="0">
             <img src="assets/APS.jpg" alt="Presenting at APS March Meeting 2025" class="active" loading="eager">
             <img src="assets/Ball.gif" alt="Spin density on a spherical surface" loading="lazy">
             <img src="assets/SpinDensity.png" alt="Spin density in rutile" loading="lazy">
@@ -247,6 +221,18 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- NEW: Google Scholar block under About -->
+      <section class="fade-in" aria-labelledby="scholar-title">
+        <h3 id="scholar-title" class="section-title">Google Scholar</h3>
+        <div class="cards">
+          <article class="card">
+            <h4>Publications & citations</h4>
+            <p class="meta">Stay up to date with my work</p>
+            <p class="links"><a href="https://scholar.google.com/citations?user=UHrd4IsAAAAJ&hl=en" target="_blank" rel="noopener">See my profile →</a></p>
+          </article>
         </div>
       </section>
 
@@ -296,40 +282,17 @@
               <p class="meta">Monte Carlo methods</p>
               <p class="links"><a href="assets/BSc_Thesis.pdf" target="_blank" rel="noopener">View slides →</a></p>
             </div>
-            <div class="card" style="margin-top: var(--gap);">
-              <h4>Google Scholar</h4>
-              <p class="meta">Publications & citations</p>
-              <p class="links"><a href="https://scholar.google.com/citations?user=UHrd4IsAAAAJ&hl=en" target="_blank" rel="noopener">See my profile →</a></p>
-            </div>
           </div>
         </div>
       </section>
     </main>
 
     <footer>
-      © 2025 Luca Buiarelli · Built with ♥ on GitHub Pages
+      © 2025 Luca Buiarelli · Built on GitHub Pages
     </footer>
   </div>
 
   <script>
-    // THEME
-    const root = document.documentElement;
-    const themeToggle = document.getElementById('themeToggle');
-    const storedTheme = localStorage.getItem('theme');
-    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-
-    function applyTheme(mode) {
-      root.classList.remove('light','dark');
-      if (mode === 'light') root.classList.add('light');
-      if (mode === 'dark') root.classList.add('dark');
-    }
-    applyTheme(storedTheme || (prefersLight ? 'light' : 'dark'));
-    themeToggle.addEventListener('click', () => {
-      const next = root.classList.contains('light') ? 'dark' : 'light';
-      applyTheme(next);
-      localStorage.setItem('theme', next);
-    });
-
     // CAROUSEL
     const carousel = document.querySelector('.carousel');
     const slides = [...carousel.querySelectorAll('img')];
@@ -353,7 +316,6 @@
     nextBtn.addEventListener('click', next);
     prevBtn.addEventListener('click', prev);
 
-    // Auto-rotate (pause on hover/focus)
     function startAuto() { timer = setInterval(next, 5000); }
     function stopAuto() { clearInterval(timer); }
     carousel.addEventListener('mouseenter', stopAuto);
@@ -362,13 +324,11 @@
     carousel.addEventListener('focusout', startAuto);
     startAuto();
 
-    // Keyboard support
     carousel.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') { prev(); }
       if (e.key === 'ArrowRight') { next(); }
     });
 
-    // Basic lazy loading improvement: swap to eager when in view
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
