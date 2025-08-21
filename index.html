@@ -12,172 +12,123 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2244%22 fill=%22%23ffffff%22/><text x=%2250%25%22 y=%2257%25%22 font-size=%2240%22 text-anchor=%22middle%22 fill=%22%23071b3f%22 font-family=%22Arial%2C%20sans-serif%22>LB</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    /* LIGHT THEME (default) */
-    :root {
-      --bg: #f6f8fb;
-      --panel: #ffffff;
-      --text: #0c1622;
-      --muted: #5b6a7a;
-      --brand: #1f6fff;
-      --accent: #7b5cff;
-      --ring: rgba(31,111,255,0.18);
-      --shadow: 0 12px 30px rgba(15,20,30,0.06);
-      --radius: 14px;
-      --gap: 18px;
-      --control-bg: rgba(10,18,28,0.06);
+    /* LIGHT THEME */
+    :root{
+      --bg:#f6f8fb;
+      --panel:#fff;
+      --text:#0c1622;
+      --muted:#5b6a7a;
+      --brand:#1f6fff;
+      --accent:#7b5cff;
+      --ring:rgba(31,111,255,.18);
+      --shadow:0 12px 30px rgba(15,20,30,.06);
+      --radius:14px;
+      --gap:18px;
+      --header-h:72px;
     }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans";
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,"Noto Sans";
       background:
-        radial-gradient(900px 400px at -10% -10%, rgba(123,92,255,0.04), transparent 30%),
-        radial-gradient(700px 300px at 110% 110%, rgba(31,111,255,0.03), transparent 30%),
+        radial-gradient(900px 400px at -10% -10%, rgba(123,92,255,.04), transparent 30%),
+        radial-gradient(700px 300px at 110% 110%, rgba(31,111,255,.03), transparent 30%),
         var(--bg);
-      color: var(--text);
-      line-height: 1.55;
+      color:var(--text);
+      line-height:1.55;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
     }
 
-    .wrap { max-width: 1000px; margin: 0 auto; padding: 28px; }
+    /* give room for fixed header */
+    .wrap{max-width:1000px;margin:0 auto;padding:calc(28px + var(--header-h)) 28px 28px}
 
-    header {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: var(--gap);
-      align-items: center;
-      position: sticky;
-      top: 0;
-      padding: 12px 0;
-      background: transparent;
-      z-index: 10;
+    /* FIXED TOP BAR */
+    header{
+      position:fixed; top:0; left:0; right:0;
+      height:var(--header-h);
+      display:grid; align-items:center;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:saturate(140%) blur(10px);
+      border-bottom:1px solid rgba(12,20,34,.06);
+      z-index:100;
+      box-shadow:0 6px 16px rgba(15,20,30,.05);
+    }
+    .header-inner{max-width:1000px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:1fr auto;gap:var(--gap);align-items:center}
+
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{
+      width:48px;height:48px;border-radius:12px;
+      background:linear-gradient(135deg,var(--brand),var(--accent));
+      color:#fff;display:grid;place-items:center;font-weight:800;font-size:.95rem;box-shadow:var(--shadow)
+    }
+    .title h1{margin:0;font-size:1.45rem}
+    .title .subtitle{margin:2px 0 0;color:var(--muted);font-size:.95rem}
+
+    .social{display:flex;gap:10px;align-items:center}
+    .icon-link{
+      display:inline-grid;place-items:center;width:36px;height:36px;border-radius:10px;
+      background:var(--panel);border:1px solid rgba(12,20,34,.06);box-shadow:var(--shadow);color:var(--text);text-decoration:none
+    }
+    .icon-link:hover,.icon-link:focus-visible{box-shadow:0 8px 28px var(--ring);transform:translateY(-2px)}
+
+    /* HERO */
+    .hero{margin-top:14px;display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:start}
+    @media (max-width:860px){.hero{grid-template-columns:1fr}}
+    .panel{background:var(--panel);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);border:1px solid rgba(12,20,34,.06)}
+    .hero h2{margin:0 0 8px;font-size:1.6rem}
+    .hero p{margin:0 0 12px;color:var(--muted)}
+
+    .cv-link{
+      display:inline-block;margin-top:8px;padding:9px 14px;border-radius:10px;
+      background:linear-gradient(90deg,var(--brand),var(--accent));color:#fff;text-decoration:none;font-weight:700;
+      box-shadow:0 8px 18px rgba(31,111,255,.12)
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
+    /* CAROUSEL — fixed height like before; no inner padding to avoid aspect weirdness */
+    .carousel{position:relative;height:400px;overflow:hidden;border-radius:12px;background:#eef2f8}
+    .carousel img{
+      position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+      opacity:0;transform:scale(1.01);transition:opacity 600ms ease, transform 600ms ease
     }
+    .carousel img.active{opacity:1;transform:scale(1)}
 
-    .logo {
-      width: 48px; height: 48px; border-radius: 12px;
-      background: linear-gradient(135deg, var(--brand), var(--accent));
-      display: grid; place-items: center;
-      color: white; font-weight: 800; font-size: 0.95rem;
-      box-shadow: var(--shadow);
+    .arrow{
+      position:absolute;top:50%;transform:translateY(-50%);
+      width:40px;height:40px;border-radius:50%;
+      border:1px solid rgba(12,20,34,.08);background:var(--panel);cursor:pointer;display:grid;place-items:center;box-shadow:var(--shadow)
     }
+    .arrow.prev{left:10px}
+    .arrow.next{right:10px}
 
-    .title h1 { margin: 0; font-size: 1.45rem; }
-    .title .subtitle { margin: 2px 0 0; color: var(--muted); font-size: 0.95rem; }
+    .controls{position:absolute;left:50%;transform:translateX(-50%);bottom:12px}
+    .dots{display:inline-flex;gap:8px;padding:6px 10px;background:rgba(255,255,255,.95);border-radius:999px;border:1px solid rgba(12,20,34,.06)}
+    .dot{width:10px;height:10px;border-radius:50%;background:rgba(12,20,34,.12);border:1px solid rgba(12,20,34,.06);cursor:pointer}
+    .dot[aria-current="true"]{background:var(--brand);border-color:rgba(12,20,34,.06)}
 
-    /* remove the top-right nav links (About / Experience / Notes / CV) by not styling them (we will remove the nav in markup) */
-    .social {
-      display: flex; gap: 10px; align-items: center;
-    }
+    section{margin:36px 0}
+    h3.section-title{margin:0 0 12px;font-size:1.15rem;letter-spacing:.2px;color:var(--text)}
+    .grid{display:grid;gap:var(--gap);grid-template-columns:repeat(12,1fr)}
+    .col-7{grid-column:span 7}
+    .col-5{grid-column:span 5}
+    @media (max-width:860px){.grid{grid-template-columns:1fr}.col-7,.col-5{grid-column:span 1}}
 
-    .icon-link {
-      display: inline-grid; place-items: center; width: 36px; height: 36px;
-      border-radius: 10px; background: var(--panel); border: 1px solid rgba(12,20,34,0.04);
-      box-shadow: var(--shadow); color: var(--text); text-decoration: none;
-    }
-    .icon-link:hover, .icon-link:focus-visible { box-shadow: 0 8px 28px var(--ring); transform: translateY(-2px); }
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--gap)}
+    .card{padding:16px;border-radius:12px;background:var(--panel);border:1px solid rgba(12,20,34,.06);box-shadow:var(--shadow)}
+    .card h4{margin:0 0 6px}
+    .meta{color:var(--muted);font-size:.95rem}
+    .links a{color:var(--brand);text-decoration:none;font-weight:700}
+    .links a:hover{text-decoration:underline}
 
-    .hero {
-      margin-top: 14px;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 24px;
-      align-items: start;
-    }
-    @media (max-width: 860px) {
-      .hero { grid-template-columns: 1fr; }
-    }
-
-    .panel {
-      background: var(--panel);
-      border-radius: var(--radius);
-      padding: 20px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(12,20,34,0.04);
-    }
-
-    .hero h2 { margin: 0 0 8px; font-size: 1.6rem; }
-    .hero p { margin: 0 0 12px; color: var(--muted); }
-
-    /* CTA under ABOUT (CV link) */
-    .cv-link {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 9px 14px;
-      border-radius: 10px;
-      background: linear-gradient(90deg, var(--brand), var(--accent));
-      color: white;
-      text-decoration: none;
-      font-weight: 700;
-      box-shadow: 0 8px 18px rgba(31,111,255,0.12);
-    }
-    .cv-link.secondary {
-      background: transparent;
-      color: var(--brand);
-      border: 1px solid rgba(31,111,255,0.12);
-      box-shadow: none;
-    }
-
-    /* Carousel */
-    .carousel { position: relative; height: 420px; overflow: hidden; border-radius: 12px; background: var(--control-bg); }
-    .carousel img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: contain;
-      opacity: 0; transform: scale(1.01);
-      transition: opacity 600ms ease, transform 600ms ease;
-      padding: 18px;
-    }
-    .carousel img.active { opacity: 1; transform: scale(1); }
-
-    .arrow {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      width: 40px; height: 40px; border-radius: 50%;
-      border: 1px solid rgba(12,20,34,0.06);
-      background: var(--panel); cursor: pointer; display: grid; place-items: center;
-      box-shadow: var(--shadow);
-    }
-    .arrow.prev { left: 10px; }
-    .arrow.next { right: 10px; }
-
-    .controls { position: absolute; left: 50%; transform: translateX(-50%); bottom: 12px; }
-    .dots { display: inline-flex; gap: 8px; padding: 6px 10px; background: rgba(255,255,255,0.85); border-radius: 999px; }
-    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(12,20,34,0.12); border: 1px solid rgba(12,20,34,0.06); cursor: pointer; }
-    .dot[aria-current="true"] { background: var(--brand); border-color: rgba(12,20,34,0.06); }
-
-    /* Sections */
-    section { margin: 36px 0; }
-    h3.section-title { margin: 0 0 12px; font-size: 1.15rem; letter-spacing: 0.2px; color: var(--text); }
-    .grid { display: grid; gap: var(--gap); grid-template-columns: repeat(12, 1fr); }
-    .col-7 { grid-column: span 7; }
-    .col-5 { grid-column: span 5; }
-    @media (max-width: 860px) {
-      .grid { grid-template-columns: 1fr; }
-      .col-7, .col-5 { grid-column: span 1; }
-    }
-
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--gap); }
-    .card { padding: 16px; border-radius: 12px; background: var(--panel); border: 1px solid rgba(12,20,34,0.04); box-shadow: var(--shadow); }
-    .card h4 { margin: 0 0 6px; }
-    .meta { color: var(--muted); font-size: 0.95rem; }
-    .links a { color: var(--brand); text-decoration: none; font-weight: 700; }
-    .links a:hover { text-decoration: underline; }
-
-    footer { margin: 52px 0 18px; text-align: center; color: var(--muted); font-size: 0.95rem; }
-
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+    footer{margin:52px 0 18px;text-align:center;color:var(--muted);font-size:.95rem}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
+  <!-- FIXED HEADER -->
+  <header>
+    <div class="header-inner">
       <div class="brand">
         <div class="logo" aria-hidden="true">LB</div>
         <div class="title">
@@ -185,18 +136,14 @@
           <p class="subtitle">PhD Candidate · Materials Science</p>
         </div>
       </div>
-
-      <!-- top-right: only social icons (no nav links) -->
       <div class="social" aria-label="Social links">
         <a class="icon-link" href="https://github.com/lucabuia" target="_blank" rel="noopener" aria-label="GitHub">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.51 2.87 8.33 6.84 9.68.5.1.68-.22.68-.48l-.01-1.68c-2.78.62-3.37-1.37-3.37-1.37-.45-1.17-1.1-1.48-1.1-1.48-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.33 1.12 2.9.86.09-.67.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.05 0-1.12.39-2.03 1.03-2.74-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05a9.2 9.2 0 0 1 5.01 0c1.9-1.32 2.74-1.05 2.74-1.05.55 1.42.2 2.47.1 2.73.64.71 1.03 1.62 1.03 2.74 0 3.92-2.34 4.78-4.57 5.03.36.32.68.95.68 1.92l-.01 2.84c0 .27.18.59.69.49A10.05 10.05 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/></svg>
         </a>
-
         <a class="icon-link" href="https://www.linkedin.com/in/luca-buiarelli/" target="_blank" rel="noopener" aria-label="LinkedIn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.85-2.05 3.81-2.05 4.08 0 4.83 2.68 4.83 6.16V23h-4v-6.66c0-1.59-.03-3.64-2.22-3.64-2.22 0-2.56 1.73-2.56 3.52V23h-4V8z"/></svg>
         </a>
-
-        <!-- Google Scholar icon (mortarboard) -->
+        <!-- mortarboard icon for Scholar -->
         <a class="icon-link" href="https://scholar.google.com/citations?user=UHrd4IsAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 3 1.5 8.25 12 13.5 20 9.6v5.15c0 .28-.16.54-.41.66L12 19.5l-7.59-4.09a.75.75 0 0 1-.41-.66V9.6L12 14.85 22.5 9.6 12 3Z"/>
@@ -204,19 +151,19 @@
           </svg>
         </a>
       </div>
-    </header>
+    </div>
+  </header>
 
+  <div class="wrap">
     <main>
-      <!-- HERO / ABOUT -->
-      <section id="about" class="hero fade-in">
+      <!-- ABOUT -->
+      <section id="about" class="hero">
         <div class="panel">
           <h2>Hello! I’m Luca</h2>
           <p>
             I investigate novel magnetic phases of materials using group theory and DFT simulations
             in <a href="https://birol.cems.umn.edu/" target="_blank" rel="noopener" class="links">Turan Birol’s group</a> at the University of Minnesota.
           </p>
-
-          <!-- CV link directly under the About text -->
           <a class="cv-link" href="assets/CV.pdf" target="_blank" rel="noopener">Download CV</a>
         </div>
 
@@ -230,7 +177,7 @@
             <button class="arrow prev" aria-label="Previous slide" type="button">‹</button>
             <button class="arrow next" aria-label="Next slide" type="button">›</button>
 
-            <div class="controls" aria-hidden="false">
+            <div class="controls">
               <div class="dots" role="tablist" aria-label="Slide dots">
                 <button class="dot" aria-current="true" aria-label="Slide 1" data-index="0"></button>
                 <button class="dot" aria-label="Slide 2" data-index="1"></button>
@@ -242,8 +189,8 @@
         </div>
       </section>
 
-      <!-- Google Scholar block under About (kept) -->
-      <section class="fade-in" aria-labelledby="scholar-title">
+      <!-- SCHOLAR -->
+      <section aria-labelledby="scholar-title">
         <h3 id="scholar-title" class="section-title">Google Scholar</h3>
         <div class="cards">
           <article class="card">
@@ -255,7 +202,7 @@
       </section>
 
       <!-- EXPERIENCE -->
-      <section id="experience" class="fade-in">
+      <section id="experience">
         <h3 class="section-title">Academic Experience</h3>
         <div class="cards">
           <article class="card">
@@ -277,7 +224,7 @@
       </section>
 
       <!-- NOTES -->
-      <section id="notes" class="fade-in">
+      <section id="notes">
         <h3 class="section-title">Notes & Writing</h3>
         <div class="grid">
           <div class="col-7">
@@ -305,9 +252,7 @@
       </section>
     </main>
 
-    <footer>
-      © 2025 Luca Buiarelli · Built on GitHub Pages
-    </footer>
+    <footer>© 2025 Luca Buiarelli · Built on GitHub Pages</footer>
   </div>
 
   <script>
@@ -320,38 +265,36 @@
     let current = 0;
     let timer = null;
 
-    function goTo(i) {
+    function goTo(i){
       slides[current].classList.remove('active');
-      dots[current].setAttribute('aria-current', 'false');
+      dots[current].setAttribute('aria-current','false');
       current = (i + slides.length) % slides.length;
       slides[current].classList.add('active');
-      dots[current].setAttribute('aria-current', 'true');
+      dots[current].setAttribute('aria-current','true');
     }
-    function next() { goTo(current + 1); }
-    function prev() { goTo(current - 1); }
+    function next(){ goTo(current + 1); }
+    function prev(){ goTo(current - 1); }
 
-    dots.forEach((d) => d.addEventListener('click', (e) => goTo(parseInt(e.currentTarget.dataset.index))));
+    dots.forEach(d => d.addEventListener('click', e => goTo(parseInt(e.currentTarget.dataset.index))));
     nextBtn.addEventListener('click', next);
     prevBtn.addEventListener('click', prev);
 
-    function startAuto() { timer = setInterval(next, 5000); }
-    function stopAuto() { clearInterval(timer); }
-    carousel.addEventListener('mouseenter', stopAuto);
-    carousel.addEventListener('mouseleave', startAuto);
-    carousel.addEventListener('focusin', stopAuto);
-    carousel.addEventListener('focusout', startAuto);
+    function startAuto(){ timer = setInterval(next, 5000); }
+    function stopAuto(){ clearInterval(timer); }
     startAuto();
 
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', startAuto);
     carousel.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') { prev(); }
-      if (e.key === 'ArrowRight') { next(); }
+      if(e.key === 'ArrowLeft') prev();
+      if(e.key === 'ArrowRight') next();
     });
 
-    // Lazy -> eager when visible
+    // make lazy imgs eager when visible
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          slides.forEach(img => { if (img.loading === 'lazy') img.loading = 'eager'; });
+        if(entry.isIntersecting){
+          slides.forEach(img => { if(img.loading === 'lazy') img.loading = 'eager'; });
           io.disconnect();
         }
       });
