@@ -1,175 +1,383 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Luca Buiarelli</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-        h1 {
-            margin: 0;
-            font-size: 1.8em;
-        }
-        h2 {
-            text-align: center;
-        }
-        .subtitle {
-            color: gray;
-            font-size: 1em;
-            margin-top: 5px;
-        }
-        a {
-            color: blue;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .section {
-            margin: 20px 0;
-        }
-        ul {
-            list-style-type: disc;
-            margin-left: 20px;
-        }
-        .social-links {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
-        .social-links a {
-            margin-left: 10px;
-            text-decoration: none;
-            color: blue;
-            font-size: 0.9em;
-        }
-        .social-links a:hover {
-            text-decoration: underline;
-        }
-        .carousel {
-            position: relative;
-            max-width: 100%;
-            height: 400px;
-            overflow: hidden;
-            margin: 20px auto;
-        }
-        .carousel img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            position: absolute;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        .carousel img.active {
-            opacity: 1;
-        }
-        .dots {
-            text-align: center;
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .dots span {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            margin: 5px;
-            background-color: gray;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .dots span.active {
-            background-color: blue;
-        }
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: gray;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <title>Luca Buiarelli — Materials Science</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Luca Buiarelli — PhD candidate investigating novel magnetic phases of materials using group theory and DFT simulations." />
+  <meta property="og:title" content="Luca Buiarelli" />
+  <meta property="og:description" content="PhD candidate investigating novel magnetic phases of materials using group theory and DFT simulations." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/SpinDensity.png" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2244%22 fill=%22%230c0c0c%22/><text x=%2250%25%22 y=%2257%25%22 font-size=%2260%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial%2C%20sans-serif%22>L</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --panel: #111318;
+      --text: #e7e9ee;
+      --muted: #a8b0bf;
+      --brand: #6ea8ff;
+      --accent: #8a7dff;
+      --ring: rgba(110,168,255,0.35);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius: 18px;
+      --gap: 18px;
+    }
+    :root.light {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --text: #12131a;
+      --muted: #4e5566;
+      --brand: #2357ff;
+      --accent: #5b3dff;
+      --ring: rgba(35,87,255,0.25);
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    @media (prefers-color-scheme: light) {
+      :root:not(.dark) { color-scheme: light; }
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+      background: radial-gradient(1200px 700px at 80% -10%, rgba(100,120,255,0.12), transparent 60%), radial-gradient(900px 600px at -10% 20%, rgba(110,255,220,0.10), transparent 60%), var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      letter-spacing: 0.1px;
+    }
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 28px; }
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--gap);
+      align-items: center;
+      position: sticky;
+      top: 0;
+      padding: 16px 0;
+      backdrop-filter: saturate(140%) blur(8px);
+      z-index: 10;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .logo {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand), var(--accent));
+      box-shadow: var(--shadow);
+      display: grid; place-items: center;
+      color: white; font-weight: 800;
+    }
+    .title h1 { margin: 0; font-size: 1.5rem; letter-spacing: 0.3px; }
+    .title .subtitle { margin: 2px 0 0; color: var(--muted); font-size: 0.95rem; }
+    nav ul {
+      display: flex; gap: 14px; list-style: none; margin: 0; padding: 0;
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 999px; padding: 8px; align-items: center;
+    }
+    nav a {
+      text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.92rem;
+      padding: 8px 12px; border-radius: 999px;
+    }
+    nav a:hover, nav a:focus-visible { outline: none; background: rgba(110,168,255,0.12); }
+    .social {
+      display: flex; gap: 10px; align-items: center; margin-left: 8px;
+    }
+    .icon-link {
+      display: inline-grid; place-items: center; width: 34px; height: 34px;
+      border-radius: 10px; background: var(--panel); border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: var(--shadow);
+    }
+    .icon-link:hover, .icon-link:focus-visible { outline: none; border-color: var(--ring); box-shadow: 0 0 0 6px var(--ring); }
+    .theme-toggle {
+      border: 1px solid rgba(255,255,255,0.12); background: var(--panel); color: var(--text);
+      padding: 8px 12px; border-radius: 999px; cursor: pointer; font-weight: 600;
+    }
+    .hero {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      nav ul { display: none; } /* Keep it minimal on small screens */
+    }
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+    .hero h2 { margin: 0 0 8px; font-size: 2rem; }
+    .hero p { margin: 0 0 16px; color: var(--muted); }
+    .cta {
+      display: inline-flex; gap: 10px; align-items: center;
+      padding: 10px 14px; border-radius: 12px; text-decoration: none; font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: linear-gradient(135deg, var(--brand), var(--accent));
+      color: white;
+    }
+    .cta.secondary {
+      background: transparent; color: var(--text);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+    /* Carousel */
+    .carousel { position: relative; height: 420px; overflow: hidden; border-radius: var(--radius); }
+    .carousel img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: contain;
+      opacity: 0; transform: scale(1.01);
+      transition: opacity 600ms ease, transform 600ms ease;
+      background: radial-gradient(600px 400px at 50% 30%, rgba(110,168,255,0.08), transparent 50%);
+    }
+    .carousel img.active { opacity: 1; transform: scale(1); }
+    .carousel .controls {
+      position: absolute; inset: auto 0 12px 0; display: grid; place-items: center; gap: 8px;
+    }
+    .dots { display: inline-flex; gap: 8px; padding: 6px 10px; background: rgba(0,0,0,0.35); border-radius: 999px; }
+    .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,0.5); border: none; cursor: pointer;
+    }
+    .dot[aria-current="true"] { background: white; }
+    .arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(0,0,0,0.35); cursor: pointer; display: grid; place-items: center;
+    }
+    .arrow:hover, .dot:focus-visible, .arrow:focus-visible { outline: none; box-shadow: 0 0 0 6px var(--ring); }
+    .arrow.prev { left: 10px; }
+    .arrow.next { right: 10px; }
+    /* Sections */
+    section { margin: 42px 0; }
+    h3.section-title { margin: 0 0 16px; font-size: 1.3rem; letter-spacing: 0.2px; }
+    .grid {
+      display: grid; gap: var(--gap);
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .col-7 { grid-column: span 7; }
+    .col-5 { grid-column: span 5; }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+      .col-7, .col-5 { grid-column: span 1; }
+    }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--gap); }
+    .card { padding: 18px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); background: var(--panel); box-shadow: var(--shadow); }
+    .card h4 { margin: 0 0 6px; }
+    .meta { color: var(--muted); font-size: 0.95rem; }
+    .links a { color: var(--brand); text-decoration: none; font-weight: 700; }
+    .links a:hover { text-decoration: underline; }
+    footer { margin: 52px 0 18px; text-align: center; color: var(--muted); font-size: 0.95rem; }
+    /* Smooth fade-in */
+    .fade-in { animation: fade 600ms ease both; }
+    @keyframes fade { from { opacity: 0; transform: translateY(6px);} to { opacity: 1; transform: translateY(0);} }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+  </style>
 </head>
-
 <body>
-    <div class="social-links">
-        <a href="https://github.com/lucabuia" target="_blank">GitHub</a>
-        <a href="https://www.linkedin.com/in/luca-buiarelli/" target="_blank">LinkedIn</a>
-        <a href="https://scholar.google.com/citations?user=UHrd4IsAAAAJ&hl=en" target="_blank">Google Scholar</a>
-    </div>
-    <div>
-        <h1>Luca Buiarelli</h1>
-        <p class="subtitle">PhD candidate</p>
-    </div>
-    <p>
-        Hello! I’m Luca. I am investigating novel magnetic phases of materials using group theory and DFT simulations 
-        in <a href="https://birol.cems.umn.edu/" target="_blank">Turan Birol's group</a> at the University of Minnesota.
-    </p>
-
-    <div class="section carousel">
-        <img src="assets/APS.jpg" alt="Me presenting at March Meeting 2025" class="active">
-        <img src="assets/Ball.gif" alt="Spin Density on the surface of a sphere">
-        <img src="assets/SpinDensity.png" alt="Spin density in rutile">
-        <img src="assets/Rashba.png" alt="Rashba spin-split Fermi surfaces">
-        <div class="dots">
-            <span class="active" onclick="showSlide(0)"></span>
-            <span onclick="showSlide(1)"></span>
-            <span onclick="showSlide(2)"></span>
-            <span onclick="showSlide(3)"></span>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">L</div>
+        <div class="title">
+          <h1>Luca Buiarelli</h1>
+          <p class="subtitle">PhD Candidate · Materials Science</p>
         </div>
-    </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#notes">Notes</a></li>
+            <li><a href="assets/CV.pdf" target="_blank" rel="noopener">CV</a></li>
+          </ul>
+        </nav>
+        <div class="social" aria-label="Social links">
+          <a class="icon-link" href="https://github.com/lucabuia" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.51 2.87 8.33 6.84 9.68.5.1.68-.22.68-.48l-.01-1.68c-2.78.62-3.37-1.37-3.37-1.37-.45-1.17-1.1-1.48-1.1-1.48-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.33 1.12 2.9.86.09-.67.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.05 0-1.12.39-2.03 1.03-2.74-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05a9.2 9.2 0 0 1 5.01 0c1.9-1.32 2.74-1.05 2.74-1.05.55 1.42.2 2.47.1 2.73.64.71 1.03 1.62 1.03 2.74 0 3.92-2.34 4.78-4.57 5.03.36.32.68.95.68 1.92l-.01 2.84c0 .27.18.59.69.49A10.05 10.05 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/></svg>
+          </a>
+          <a class="icon-link" href="https://www.linkedin.com/in/luca-buiarelli/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.85-2.05 3.81-2.05 4.08 0 4.83 2.68 4.83 6.16V23h-4v-6.66c0-1.59-.03-3.64-2.22-3.64-2.22 0-2.56 1.73-2.56 3.52V23h-4V8z"/></svg>
+          </a>
+          <a class="icon-link" href="https://scholar.google.com/citations?user=UHrd4IsAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 1 12l4 .01V21h6v-6h2v6h6v-8.99l4-.01L12 3z"/></svg>
+          </a>
+          <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle theme">Toggle theme</button>
+        </div>
+      </div>
+    </header>
 
-    <div class="section">
-        <h2>Academic Experiences</h2>
-        <ul>
-            <li>University of Minnesota, PhD Materials Science (2023–Now)</li>
-            <li>University of Copenhagen, MSc Physics (2021–2023)</li>
-            <li>University of Pisa, BSc Physics (2018–2021)</li>
-        </ul>
-        <p>
-            Download my <a href="assets/CV.pdf" target="_blank">CV</a> to learn more about my academic journey and projects.
-        </p>
-    </div>
-    
-    <div class="section">
-        <h2>Notes</h2>
-        <p>
-            I’ve compiled some notes in Condensed Matter Theory, you can download them here: <a href="assets/Condensed_Matter_Theory.pdf" target="_blank">CMT notes</a>.
-        </p>
-        <p>
-            Moreover, you can find here my <a href="https://nbi.ku.dk/english/theses/masters-theses/luca-buiarelli/" target="_blank"> Master's thesis</a> on kagome-layered materials and here some <a href="assets/BSc_Thesis.pdf" target="_blank">slides</a> on my Bachelor's thesis on the Monte Carlo method applied to the Ising model.
-        </p>
-    </div>
-    
+    <main>
+      <!-- HERO -->
+      <section id="about" class="hero fade-in">
+        <div class="panel">
+          <h2>Hello! I’m Luca 👋</h2>
+          <p>
+            I investigate novel magnetic phases of materials using group theory and DFT simulations
+            in <a href="https://birol.cems.umn.edu/" target="_blank" rel="noopener" class="links">Turan Birol’s group</a> at the University of Minnesota.
+          </p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+            <a class="cta" href="assets/CV.pdf" target="_blank" rel="noopener">Download CV</a>
+            <a class="cta secondary" href="#notes">Read Notes</a>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="carousel" aria-roledescription="carousel" aria-label="Gallery">
+            <img src="assets/APS.jpg" alt="Presenting at APS March Meeting 2025" class="active" loading="eager">
+            <img src="assets/Ball.gif" alt="Spin density on a spherical surface" loading="lazy">
+            <img src="assets/SpinDensity.png" alt="Spin density in rutile" loading="lazy">
+            <img src="assets/Rashba.png" alt="Rashba spin-split Fermi surfaces" loading="lazy">
+
+            <button class="arrow prev" aria-label="Previous slide" type="button">‹</button>
+            <button class="arrow next" aria-label="Next slide" type="button">›</button>
+
+            <div class="controls">
+              <div class="dots" role="tablist" aria-label="Slide dots">
+                <button class="dot" aria-current="true" aria-label="Slide 1" data-index="0"></button>
+                <button class="dot" aria-label="Slide 2" data-index="1"></button>
+                <button class="dot" aria-label="Slide 3" data-index="2"></button>
+                <button class="dot" aria-label="Slide 4" data-index="3"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience" class="fade-in">
+        <h3 class="section-title">Academic Experience</h3>
+        <div class="cards">
+          <article class="card">
+            <h4>University of Minnesota — PhD, Materials Science</h4>
+            <p class="meta">2023–Present</p>
+            <p>Exploring magnetic phases with symmetry analysis, tight-binding models, and <abbr title="Density Functional Theory">DFT</abbr>.</p>
+          </article>
+          <article class="card">
+            <h4>University of Copenhagen — MSc, Physics</h4>
+            <p class="meta">2021–2023</p>
+            <p>Master’s thesis on kagome-layered materials, focusing on electronic structure and topology.</p>
+          </article>
+          <article class="card">
+            <h4>University of Pisa — BSc, Physics</h4>
+            <p class="meta">2018–2021</p>
+            <p>Undergraduate research on Monte Carlo techniques applied to the Ising model.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- NOTES -->
+      <section id="notes" class="fade-in">
+        <h3 class="section-title">Notes & Writing</h3>
+        <div class="grid">
+          <div class="col-7">
+            <div class="card">
+              <h4>Condensed Matter Theory Notes</h4>
+              <p class="meta">PDF · continuously updated</p>
+              <p>My running compilation of CMT notes, including symmetry, band theory, topology, and magnetism.</p>
+              <p class="links"><a href="assets/Condensed_Matter_Theory.pdf" target="_blank" rel="noopener">Download CMT notes →</a></p>
+            </div>
+            <div class="card" style="margin-top: var(--gap);">
+              <h4>Master’s Thesis — Kagome-layered Materials</h4>
+              <p class="meta">University of Copenhagen</p>
+              <p>Structure–property relations and emergent phenomena in kagome systems.</p>
+              <p class="links"><a href="https://nbi.ku.dk/english/theses/masters-theses/luca-buiarelli/" target="_blank" rel="noopener">Read the thesis →</a></p>
+            </div>
+          </div>
+          <div class="col-5">
+            <div class="card">
+              <h4>Bachelor’s Thesis Slides — Ising Model</h4>
+              <p class="meta">Monte Carlo methods</p>
+              <p class="links"><a href="assets/BSc_Thesis.pdf" target="_blank" rel="noopener">View slides →</a></p>
+            </div>
+            <div class="card" style="margin-top: var(--gap);">
+              <h4>Google Scholar</h4>
+              <p class="meta">Publications & citations</p>
+              <p class="links"><a href="https://scholar.google.com/citations?user=UHrd4IsAAAAJ&hl=en" target="_blank" rel="noopener">See my profile →</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
     <footer>
-        &copy; 2025 Luca Buiarelli
+      © 2025 Luca Buiarelli · Built with ♥ on GitHub Pages
     </footer>
+  </div>
 
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel img');
-        const dots = document.querySelectorAll('.dots span');
+  <script>
+    // THEME
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const storedTheme = localStorage.getItem('theme');
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
 
-        function showSlide(index) {
-            slides[currentSlide].classList.remove('active');
-            dots[currentSlide].classList.remove('active');
-            currentSlide = index;
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
+    function applyTheme(mode) {
+      root.classList.remove('light','dark');
+      if (mode === 'light') root.classList.add('light');
+      if (mode === 'dark') root.classList.add('dark');
+    }
+    applyTheme(storedTheme || (prefersLight ? 'light' : 'dark'));
+    themeToggle.addEventListener('click', () => {
+      const next = root.classList.contains('light') ? 'dark' : 'light';
+      applyTheme(next);
+      localStorage.setItem('theme', next);
+    });
+
+    // CAROUSEL
+    const carousel = document.querySelector('.carousel');
+    const slides = [...carousel.querySelectorAll('img')];
+    const dots = [...carousel.querySelectorAll('.dot')];
+    const prevBtn = carousel.querySelector('.prev');
+    const nextBtn = carousel.querySelector('.next');
+    let current = 0;
+    let timer = null;
+
+    function goTo(i) {
+      slides[current].classList.remove('active');
+      dots[current].setAttribute('aria-current', 'false');
+      current = (i + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].setAttribute('aria-current', 'true');
+    }
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    dots.forEach((d) => d.addEventListener('click', (e) => goTo(parseInt(e.currentTarget.dataset.index))));
+    nextBtn.addEventListener('click', next);
+    prevBtn.addEventListener('click', prev);
+
+    // Auto-rotate (pause on hover/focus)
+    function startAuto() { timer = setInterval(next, 5000); }
+    function stopAuto() { clearInterval(timer); }
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', startAuto);
+    carousel.addEventListener('focusin', stopAuto);
+    carousel.addEventListener('focusout', startAuto);
+    startAuto();
+
+    // Keyboard support
+    carousel.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { prev(); }
+      if (e.key === 'ArrowRight') { next(); }
+    });
+
+    // Basic lazy loading improvement: swap to eager when in view
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          slides.forEach(img => { if (img.loading === 'lazy') img.loading = 'eager'; });
+          io.disconnect();
         }
-
-        function nextSlide() {
-            showSlide((currentSlide + 1) % slides.length);
-        }
-
-        setInterval(nextSlide, 5000); // Change slide every 5 seconds
-    </script>
+      });
+    });
+    io.observe(carousel);
+  </script>
 </body>
 </html>
