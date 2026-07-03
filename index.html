@@ -6,11 +6,47 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            margin: 20px;
-            max-width: 800px;
-            margin: 0 auto;
+            margin: 0;
             position: relative;
         }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 50%;
+            left: 16px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+        .sidebar a {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            font-size: 0.75em;
+            color: gray;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+            padding: 4px 2px;
+            border-left: 2px solid #ddd;
+        }
+        .sidebar a:hover,
+        .sidebar a.active {
+            color: blue;
+            border-left-color: blue;
+        }
+
+        /* Main content */
+        .main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 20px 60px;
+            position: relative;
+        }
+
         h1 {
             margin: 0;
             font-size: 1.8em;
@@ -39,8 +75,8 @@
         }
         .social-links {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 20px;
+            right: 20px;
         }
         .social-links a {
             margin-left: 10px;
@@ -51,6 +87,8 @@
         .social-links a:hover {
             text-decoration: underline;
         }
+
+        /* Carousel */
         .carousel {
             position: relative;
             max-width: 100%;
@@ -58,15 +96,25 @@
             overflow: hidden;
             margin: 20px auto;
         }
-        .carousel img {
+        .carousel .slide,
+        .carousel > img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
             position: absolute;
             opacity: 0;
             transition: opacity 1s ease-in-out;
+            display: block;
         }
-        .carousel img.active {
+        .carousel .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .carousel > img {
+            object-fit: contain;
+        }
+        .carousel .slide.active,
+        .carousel > img.active {
             opacity: 1;
         }
         .dots {
@@ -75,6 +123,7 @@
             bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
+            z-index: 10;
         }
         .dots span {
             display: inline-block;
@@ -89,68 +138,238 @@
         .dots span.active {
             background-color: blue;
         }
+
+        /* Publications */
+        .pub-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .pub-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.92em;
+        }
+        .pub-list li:last-child {
+            border-bottom: none;
+        }
+        .pub-title {
+            font-weight: bold;
+        }
+        .pub-authors {
+            color: #444;
+            margin: 2px 0;
+        }
+        .pub-venue {
+            color: gray;
+            font-size: 0.9em;
+        }
+        .pub-badge {
+            display: inline-block;
+            font-size: 0.75em;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 0 5px;
+            color: #555;
+            font-style: italic;
+            margin-left: 4px;
+        }
+        .pub-links {
+            margin-top: 3px;
+            font-size: 0.88em;
+        }
+        .pub-links a {
+            margin-right: 8px;
+        }
+        .pub-section-label {
+            font-size: 0.85em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: gray;
+            margin: 16px 0 6px;
+        }
+
+        /* Blog list */
+        .blog-list {
+            list-style-type: none;
+            margin-left: 0;
+            padding: 0;
+        }
+        .blog-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+        }
+        .blog-list li:last-child {
+            border-bottom: none;
+        }
+        .blog-date {
+            color: gray;
+            font-size: 0.85em;
+            white-space: nowrap;
+        }
+
+        /* Hide sidebar on narrow screens */
+        @media (max-width: 900px) {
+            .sidebar { display: none; }
+        }
     </style>
 </head>
 
 <body>
-    <div class="social-links">
-        <a href="https://github.com/lucabuia" target="_blank">GitHub</a>
-        <a href="https://www.linkedin.com/in/luca-buiarelli/" target="_blank">LinkedIn</a>
-        <a href="https://scholar.google.com/citations?user=UHrd4IsAAAAJ&hl=en" target="_blank">Google Scholar</a>
-    </div>
-    <div>
-        <h1>Luca Buiarelli</h1>
-        <p class="subtitle">PhD candidate</p>
-    </div>
-    <p>
-        Hello! I’m Luca. I am investigating unconventional magnetic phases of materials using group theory and DFT simulations 
-        in <a href="https://birol.cems.umn.edu/" target="_blank">Turan Birol's group</a> at the University of Minnesota.
-    </p>
 
-    <div class="section carousel">
-        <img src="assets/APS.jpg" alt="Me presenting at March Meeting 2025." class="active">
+    <nav class="sidebar">
+        <a href="#cv">CV</a>
+        <a href="#publications">Publications</a>
+        <a href="#notes">Notes</a>
+        <a href="#blog">Blog</a>
+    </nav>
 
-        <a href="https://journals.aps.org/prb/abstract/10.1103/kq6x-7jfc" target="_blank" class="slide">
-        <img src="assets/multipoles.png" alt="New paper on magnetic multipoles in altermagnets.">
-        </a>
-        
-        <a href="https://journals.aps.org/prb/abstract/10.1103/ytk4-q4ck" target="_blank" class="slide">
-        <img src="assets/shandites.png" alt="New paper on CDW phases in kagome Shandites.">
-    </a>
-        
-        <div class="dots">
-            <span class="active" onclick="showSlide(0)"></span>
-            <span onclick="showSlide(1)"></span>
-            <span onclick="showSlide(2)"></span>
-            <span onclick="showSlide(3)"></span>
+    <div class="main">
+        <div class="social-links">
+            <a href="https://github.com/lucabuia" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/luca-buiarelli/" target="_blank">LinkedIn</a>
+            <a href="https://scholar.google.com/citations?user=UHrd4IsAAAAJ&hl=en" target="_blank">Google Scholar</a>
+        </div>
+
+        <div>
+            <h1>Luca Buiarelli</h1>
+            <p class="subtitle">PhD candidate</p>
+        </div>
+        <p>
+            Hello! I'm Luca. I am investigating unconventional magnetic phases of materials using group theory and DFT simulations 
+            in <a href="https://birol.cems.umn.edu/" target="_blank">Turan Birol's group</a> at the University of Minnesota.
+        </p>
+
+        <div class="section carousel">
+            <img src="assets/APS.jpg" alt="Me presenting at March Meeting 2025." class="active">
+            <a href="https://journals.aps.org/prb/abstract/10.1103/kq6x-7jfc" target="_blank" class="slide">
+                <img src="assets/multipoles.png" alt="New paper on magnetic multipoles in altermagnets.">
+            </a>
+            <a href="https://journals.aps.org/prb/abstract/10.1103/ytk4-q4ck" target="_blank" class="slide">
+                <img src="assets/shandites.png" alt="New paper on CDW phases in kagome Shandites.">
+            </a>
+            <div class="dots">
+                <span class="active" onclick="showSlide(0)"></span>
+                <span onclick="showSlide(1)"></span>
+                <span onclick="showSlide(2)"></span>
+            </div>
+        </div>
+
+        <div class="section" id="cv">
+            <h2>Short CV</h2>
+            <ul>
+                <li>University of Minnesota, PhD Materials Science (2023–Now)</li>
+                <li>University of Copenhagen, MSc Physics (2021–2023)</li>
+                <li>University of Pisa, BSc Physics (2018–2021)</li>
+            </ul>
+            <p>
+                Download my full <a href="assets/CV.pdf" target="_blank">CV</a>.
+            </p>
+        </div>
+
+        <div class="section" id="publications">
+            <h2>Publications</h2>
+
+            <div class="pub-section-label">Preprints</div>
+            <ol class="pub-list">
+                <li>
+                    <div class="pub-title">Discovery of an odd-parity f-wave charge order in a kagome metal</div>
+                    <div class="pub-authors">Jiangchang Zheng, Caiyun Chen, Ruiqin Fu, <strong>Luca Buiarelli</strong>, Zihan Lin, Fazhi Yang, Tianhao Guo, Ganesh Pokharel, Andrea Capa Salinas, Sen Zhou, Turan Birol, Stephen D. Wilson, Junzhang Ma, Daniel J. Schultz, Xianxin Wu, Berthold Jäck</div>
+                    <div class="pub-venue">Submitted</div>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2601.19343" target="_blank">arXiv</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="pub-title">Interplay between charge correlations and superconductivity across the superconducting domes of CsV<sub>3</sub>Sb<sub>5-x</sub>Sn<sub>x</sub></div>
+                    <div class="pub-authors">Andrea N. Capa Salinas, Brenden R. Ortiz, Steven J. Gomez Alvarado, Sarah Schwarz, Ganesh Pokharel, <strong>Luca Buiarelli</strong>, Hyeonseo Harry Park, Shiyu Yuan, Roland Yin, Suchismita Sarker, Turan Birol, Stephen D. Wilson</div>
+                    <div class="pub-venue">Submitted</div>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2512.11177" target="_blank">arXiv</a>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="pub-section-label">Published</div>
+            <ol class="pub-list">
+                <li>
+                    <div class="pub-title">Probing multipolar order in the candidate altermagnet MnF<sub>2</sub> through the elastocaloric effect under strain</div>
+                    <div class="pub-authors">Rahel Ohlendorf, <strong>Luca Buiarelli</strong>, Hilary ML Noad, Andrew P Mackenzie, Rafael M Fernandes, Turan Birol, Jörg Schmalian, Elena Gati</div>
+                    <div class="pub-venue">Phys. Rev. Lett. <strong>137</strong> (2026) <span class="pub-badge">Editors' Suggestion</span></div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.1103/svrz-315w" target="_blank">Journal</a>
+                        <a href="https://arxiv.org/abs/2601.19343" target="_blank">arXiv</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="pub-title">Observation of mirror-odd and mirror-even spin texture in ultra-thin epitaxially-strained RuO<sub>2</sub> films</div>
+                    <div class="pub-authors">Yichen Zhang, Seung Gyo Jeong, <strong>Luca Buiarelli</strong>, Seungjun Lee, Yucheng Guo, Jiaqin Wen, Hang Li, Sreejith Nair, In Hyeok Choi, Zheng Ren, Ziqin Yue, Alexei Fedorov, Sung-Kwan Mo, Junichiro Kono, Jong Seok Lee, Tony Low, Turan Birol, Rafael M. Fernandes, Milan Radovic, Bharat Jalan, Ming Yi</div>
+                    <div class="pub-venue">Science Adv. (2026)</div>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2509.16361" target="_blank">arXiv</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="pub-title">Electronic and structural properties of Rh- and Pd-based kagome layered shandites from first principles</div>
+                    <div class="pub-authors"><strong>Luca Buiarelli</strong>, Turan Birol, Brian M. Andersen, Morten H. Christensen</div>
+                    <div class="pub-venue">Phys. Rev. B <strong>113</strong> (2026) <span class="pub-badge">Editors' Suggestion</span></div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.1103/ytk4-q4ck" target="_blank">Journal</a>
+                        <a href="https://arxiv.org/abs/2507.23329" target="_blank">arXiv</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="pub-title">Altermagnetic Polar Metallic Phase in Ultra-Thin Epitaxially-Strained RuO<sub>2</sub> Films</div>
+                    <div class="pub-authors">Seung Gyo Jeong, In Hyeok Choi, Sreejith Nair, <strong>Luca Buiarelli</strong>, Bita Pourbahari, Jinyoung Oh, Nabil Bassim, Ambrose Seo, Woo Seok Choi, Rafael M. Fernandes, Turan Birol, Liuyan Zhao, Jong Seok Lee, Bharat Jalan</div>
+                    <div class="pub-venue">Proc. Natl. Acad. Sci. <strong>123</strong> (2026)</div>
+                    <div class="pub-links">
+                        <a href="https://www.pnas.org/doi/10.1073/pnas.2526641123" target="_blank">Journal</a>
+                        <a href="https://arxiv.org/abs/2405.05838" target="_blank">arXiv</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="pub-title">Noncollinear Magnetic Multipoles in Collinear Altermagnets</div>
+                    <div class="pub-authors"><strong>Luca Buiarelli</strong>, Rafael M. Fernandes, Turan Birol</div>
+                    <div class="pub-venue">Phys. Rev. B <strong>112</strong>, 224442 (2025)</div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.1103/kq6x-7jfc" target="_blank">Journal</a>
+                        <a href="https://arxiv.org/abs/2509.23117" target="_blank">arXiv</a>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <div class="section" id="notes">
+            <h2>Notes</h2>
+            <p>
+                I've compiled some notes in Condensed Matter Theory, you can download them here: <a href="assets/Condensed_Matter_Theory.pdf" target="_blank">CMT notes</a>.
+            </p>
+            <p>
+                Moreover, you can find here my <a href="https://nbi.ku.dk/english/theses/masters-theses/luca-buiarelli/" target="_blank">Master's thesis</a> on kagome-layered materials and here some <a href="assets/BSc_Thesis.pdf" target="_blank">slides</a> on my Bachelor's thesis on the Monte Carlo method applied to the Ising model.
+            </p>
+        </div>
+
+        <div class="section" id="blog">
+            <h2>Blog</h2>
+            <ul class="blog-list">
+                <li>
+                    <a href="blogposts/data_centers.html">Could the AI Bubble Popping Be Good News for Science?</a>
+                    <span class="blog-date">July 2026</span>
+                </li>
+            </ul>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Academic Experiences</h2>
-        <ul>
-            <li>University of Minnesota, PhD Materials Science (2023–Now)</li>
-            <li>University of Copenhagen, MSc Physics (2021–2023)</li>
-            <li>University of Pisa, BSc Physics (2018–2021)</li>
-        </ul>
-        <p>
-            Download my <a href="assets/CV.pdf" target="_blank">CV</a>.
-        </p>
-    </div>
-    
-    <div class="section">
-        <h2>Notes</h2>
-        <p>
-            I’ve compiled some notes in Condensed Matter Theory, you can download them here: <a href="assets/Condensed_Matter_Theory.pdf" target="_blank">CMT notes</a>.
-        </p>
-        <p>
-            Moreover, you can find here my <a href="https://nbi.ku.dk/english/theses/masters-theses/luca-buiarelli/" target="_blank"> Master's thesis</a> on kagome-layered materials and here some <a href="assets/BSc_Thesis.pdf" target="_blank">slides</a> on my Bachelor's thesis on the Monte Carlo method applied to the Ising model.
-        </p>
-    </div>
-
     <script>
+        // Carousel
         let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel img');
+        const slides = document.querySelectorAll('.carousel .slide, .carousel > img');
         const dots = document.querySelectorAll('.dots span');
 
         function showSlide(index) {
@@ -165,7 +384,26 @@
             showSlide((currentSlide + 1) % slides.length);
         }
 
-        setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        setInterval(nextSlide, 8000);
+
+        // Sidebar active state on scroll
+        const sections = document.querySelectorAll('section[id], div[id]');
+        const navLinks = document.querySelectorAll('.sidebar a');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.toggle(
+                            'active',
+                            link.getAttribute('href') === '#' + entry.target.id
+                        );
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('[id]').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
