@@ -25,7 +25,7 @@
             writing-mode: vertical-rl;
             text-orientation: mixed;
             transform: rotate(180deg);
-            font-size: 1.5em;
+            font-size: 1em;
             color: gray;
             text-decoration: none;
             letter-spacing: 0.05em;
@@ -104,6 +104,7 @@
             opacity: 0;
             transition: opacity 1s ease-in-out;
             display: block;
+            pointer-events: none; /* 1. ADDED THIS: ignores clicks on hidden slides */
         }
         .carousel .slide img {
             width: 100%;
@@ -116,6 +117,7 @@
         .carousel .slide.active,
         .carousel > img.active {
             opacity: 1;
+            pointer-events: auto; /* 2. ADDED THIS: enables clicks on the active slide */
         }
         .dots {
             text-align: center;
@@ -358,7 +360,7 @@
         <div class="section" id="blog">
             <h2>Blog Posts</h2>
             <ul class="blog-list">
-                
+                Coming soon...
             </ul>
         </div>
     </div>
