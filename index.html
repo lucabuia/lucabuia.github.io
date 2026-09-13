@@ -104,7 +104,7 @@
             opacity: 0;
             transition: opacity 1s ease-in-out;
             display: block;
-            pointer-events: none; /* 1. ADDED THIS: ignores clicks on hidden slides */
+            pointer-events: none;
         }
         .carousel .slide img {
             width: 100%;
@@ -117,7 +117,7 @@
         .carousel .slide.active,
         .carousel > img.active {
             opacity: 1;
-            pointer-events: auto; /* 2. ADDED THIS: enables clicks on the active slide */
+            pointer-events: auto;
         }
         .dots {
             text-align: center;
@@ -191,6 +191,11 @@
             letter-spacing: 0.05em;
             color: gray;
             margin: 16px 0 6px;
+        }
+        .pub-full-list-note {
+            font-size: 0.88em;
+            color: gray;
+            margin-top: 14px;
         }
 
         /* Blog list */
@@ -276,16 +281,16 @@
         </div>
 
         <div class="section" id="publications">
-            <h2>Publications</h2>
+            <h2>Selected Publications</h2>
 
             <div class="pub-section-label">Preprints</div>
             <ol class="pub-list">
                 <li>
-                    <div class="pub-title">Discovery of an odd-parity f-wave charge order in a kagome metal</div>
-                    <div class="pub-authors">Jiangchang Zheng, Caiyun Chen, Ruiqin Fu, <strong>Luca Buiarelli</strong>, Zihan Lin, Fazhi Yang, Tianhao Guo, Ganesh Pokharel, Andrea Capa Salinas, Sen Zhou, Turan Birol, Stephen D. Wilson, Junzhang Ma, Daniel J. Schultz, Xianxin Wu, Berthold Jäck</div>
+                    <div class="pub-title">Piezomagnetism in a model cubic noncollinear altermagnet</div>
+                    <div class="pub-authors">Sudarshan Sharma, <strong>Luca Buiarelli</strong>, Richard Spieker, Ivan Jakovac, Damjan Pelc, Turan Birol, Martin Greven</div>
                     <div class="pub-venue">Submitted</div>
                     <div class="pub-links">
-                        <a href="https://arxiv.org/abs/2601.19343" target="_blank">arXiv</a>
+                        <a href="https://arxiv.org/abs/2609.11816" target="_blank">arXiv</a>
                     </div>
                 </li>
             </ol>
@@ -293,30 +298,12 @@
             <div class="pub-section-label">Published</div>
             <ol class="pub-list">
                 <li>
-                    <div class="pub-title">Interplay between charge correlations and superconductivity across the superconducting domes of CsV<sub>3</sub>Sb<sub>5-x</sub>Sn<sub>x</sub></div>
-                    <div class="pub-authors">Andrea N. Capa Salinas, Brenden R. Ortiz, Steven J. Gomez Alvarado, Sarah Schwarz, Ganesh Pokharel, <strong>Luca Buiarelli</strong>, Hyeonseo Harry Park, Shiyu Yuan, Roland Yin, Suchismita Sarker, Turan Birol, Stephen D. Wilson</div>
-                    <div class="pub-venue">Phys. Rev. B <strong>114</strong> (2026)</div>
-                    <div class="pub-links">
-                        <a href="https://doi.org/10.1103/bcqw-7lsf" target="_blank">Journal</a>
-                        <a href="https://arxiv.org/abs/2512.11177" target="_blank">arXiv</a>
-                    </div>
-                </li>
-                <li>
                     <div class="pub-title">Probing multipolar order in the candidate altermagnet MnF<sub>2</sub> through the elastocaloric effect under strain</div>
                     <div class="pub-authors">Rahel Ohlendorf, <strong>Luca Buiarelli</strong>, Hilary ML Noad, Andrew P Mackenzie, Rafael M Fernandes, Turan Birol, Jörg Schmalian, Elena Gati</div>
                     <div class="pub-venue">Phys. Rev. Lett. <strong>137</strong> (2026) <span class="pub-badge">Editors' Suggestion</span></div>
                     <div class="pub-links">
                         <a href="https://doi.org/10.1103/svrz-315w" target="_blank">Journal</a>
                         <a href="https://arxiv.org/abs/2601.19343" target="_blank">arXiv</a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pub-title">Observation of mirror-odd and mirror-even spin texture in ultra-thin epitaxially-strained RuO<sub>2</sub> films</div>
-                    <div class="pub-authors">Yichen Zhang, Seung Gyo Jeong, <strong>Luca Buiarelli</strong>, Seungjun Lee, Yucheng Guo, Jiaqin Wen, Hang Li, Sreejith Nair, In Hyeok Choi, Zheng Ren, Ziqin Yue, Alexei Fedorov, Sung-Kwan Mo, Junichiro Kono, Jong Seok Lee, Tony Low, Turan Birol, Rafael M. Fernandes, Milan Radovic, Bharat Jalan, Ming Yi</div>
-                    <div class="pub-venue">Science Adv. <strong>12</strong> (2026)</div>
-                    <div class="pub-links">
-                        <a href="https://doi.org/10.1126/sciadv.aec2917" target="_blank">Journal</a>
-                        <a href="https://arxiv.org/abs/2509.16361" target="_blank">arXiv</a>
                     </div>
                 </li>
                 <li>
@@ -329,15 +316,6 @@
                     </div>
                 </li>
                 <li>
-                    <div class="pub-title">Altermagnetic Polar Metallic Phase in Ultra-Thin Epitaxially-Strained RuO<sub>2</sub> Films</div>
-                    <div class="pub-authors">Seung Gyo Jeong, In Hyeok Choi, Sreejith Nair, <strong>Luca Buiarelli</strong>, Bita Pourbahari, Jinyoung Oh, Nabil Bassim, Ambrose Seo, Woo Seok Choi, Rafael M. Fernandes, Turan Birol, Liuyan Zhao, Jong Seok Lee, Bharat Jalan</div>
-                    <div class="pub-venue">Proc. Natl. Acad. Sci. <strong>123</strong> (2026)</div>
-                    <div class="pub-links">
-                        <a href="https://www.pnas.org/doi/10.1073/pnas.2526641123" target="_blank">Journal</a>
-                        <a href="https://arxiv.org/abs/2405.05838" target="_blank">arXiv</a>
-                    </div>
-                </li>
-                <li>
                     <div class="pub-title">Noncollinear Magnetic Multipoles in Collinear Altermagnets</div>
                     <div class="pub-authors"><strong>Luca Buiarelli</strong>, Rafael M. Fernandes, Turan Birol</div>
                     <div class="pub-venue">Phys. Rev. B <strong>112</strong>, 224442 (2025)</div>
@@ -347,6 +325,10 @@
                     </div>
                 </li>
             </ol>
+
+            <p class="pub-full-list-note">
+                For a complete list of publications see my <a href="https://scholar.google.com/citations?user=UHrd4IsAAAAJ&hl=en" target="_blank">Google Scholar</a> or download my full <a href="assets/CV.pdf" target="_blank">CV</a>.
+            </p>
         </div>
 
         <div class="section" id="notes">
